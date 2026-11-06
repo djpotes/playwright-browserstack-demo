@@ -1,0 +1,19 @@
+{
+  "name": "playwright-browserstack-demo",
+  "version": "1.0.0",
+  "description": "Proyecto demo de Playwright ejecutando pruebas en BrowserStack con el browserstack-node-sdk",
+  "scripts": {
+    "test": "npx playwright test",
+    "test:headed": "npx playwright test --headed",
+    "test:bs": "npx browserstack-node-sdk playwright test",
+    "report": "npx playwright show-report"
+  },
+  "keywords": ["playwright", "browserstack", "e2e", "testing"],
+  "author": "djpotes",
+  "license": "MIT",
+  "devDependencies": {
+    "@playwright/test": "^1.48.0",
+    "@types/node": "^20.11.0",
+    "browserstack-node-sdk": "latest"
+  }
+}
