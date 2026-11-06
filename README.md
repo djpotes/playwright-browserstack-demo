@@ -62,9 +62,22 @@ Edita la sección `platforms` de `browserstack.yml`. Ejemplo para un móvil Andr
 ```
 
 ## CI con GitHub Actions
+El workflow `.github/workflows/browserstack.yml` tiene dos jobs:
+
+| Job | Dónde corre | Necesita credenciales |
+|---|---|---|
+| **Playwright (runner de GitHub)** | Chromium en Ubuntu de GitHub | No |
+| **Playwright en BrowserStack** | Chrome, WebKit y Firefox en BrowserStack | Sí |
+
+Se ejecuta en cada push y pull request a `main`, y manualmente desde *Actions → Pruebas Playwright → Run workflow*. Al correrlo a mano puedes desmarcar BrowserStack.
+
+Para activar el job de BrowserStack:
 1. En el repo ve a *Settings → Secrets and variables → Actions*.
 2. Crea los secrets `BROWSERSTACK_USERNAME` y `BROWSERSTACK_ACCESS_KEY`.
-3. El workflow corre en cada push a `main` o manualmente desde la pestaña *Actions*.
+
+Si los secrets no existen, ese job se omite con un aviso en vez de fallar.
+
+El reporte HTML de Playwright queda disponible para descargar como artifact `playwright-report` en cada ejecución.
 
 ## Probar localhost
 Pon `browserstackLocal: true` en `browserstack.yml` y cambia `baseURL` en `playwright.config.ts` a tu URL local.
